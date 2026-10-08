@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	worktree = C:/Users/Lenovo/Desktop/OPS/ecommerce-client
+	symlinks = false
+	ignorecase = true
+[user]
+	name = Kyaw Hlaing Soe
+	email = kyawhlaingsoe572@gmail.com
+[remote "origin"]
+	url = https://github.com/kyaw-hlaing-soe-dev/OPS-client.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
