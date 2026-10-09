@@ -2,10 +2,9 @@
 
 ## Purpose
 
-Project-specific instructions for coding agents. Read this file at the
-start of every task and follow it. Update it whenever a task establishes
-verified project facts, changes conventions, or changes milestone
-status.
+Project-specific durable instructions for coding agents. Read this file at
+the start of every task and follow it. Changing project facts and milestone
+status belong in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
 
 ## Working agreement
 
@@ -80,36 +79,7 @@ status.
   appropriate.
 - Do not weaken or disable tests to make checks pass.
 
-## Milestone roadmap
+## Current project status
 
-- M0: baseline inspection and safe checks only; no feature
-  implementation.
-- M1: frontend foundation and application shell.
-- M2: product listing.
-- M3: product details.
-- M4: cart and cart tests.
-- M5: checkout form and submission UI.
-- M6: order confirmation and tracking.
-- M7: tests, accessibility, responsiveness, and error handling.
-- M8: backend integration after verifying API contracts.
-
-## Project facts and status
-
-- Current status: M0 baseline inspection is complete.
-- Angular runtime packages: 22.2.1; CLI/build packages: 22.2.2.
-- TypeScript installed version: 6.0.3.
-- `npm run build`: passes and writes to `dist/ecommerce-client`.
-- `npm test`: fails before execution because no Angular test target is
-  configured.
-- No application `*.spec.ts` files or lint target currently exist.
-- Runtime API configuration is in `src/assets/config.json`, but its
-  endpoint contract is unverified.
-- Verified blocker: the Order Service Swagger/OpenAPI contract and
-  authoritative API base URL are unavailable.
-- Current milestone: M0 complete.
-- Next step: obtain approval for M1, then implement only the frontend
-  foundation and application shell.
-
-See `docs/MILESTONE-0-BASELINE.md` for baseline evidence and
-`docs/API-CONTRACT.md` for the exact API information required before
-HTTP integration.
+See [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the current
+milestone, verified versions and checks, roadmap, and blockers.

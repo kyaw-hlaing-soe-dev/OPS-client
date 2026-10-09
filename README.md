@@ -1,33 +1,32 @@
 # Ecommerce Client
 
-## Description
+## Overview
 
-Simple Angular customer-facing e-commerce client for the Order Processing System.
+Angular customer-facing e-commerce client for the Order Processing System.
 
-## Technology
+Start with the maintained project documentation:
 
-Angular
-TypeScript
-RxJS
+- [Project documentation](docs/PROJECT_DOCUMENTATION.md)
+- [Agent and contributor documentation](docs/agents/README.md)
+- [Current project status](docs/PROJECT_STATUS.md)
 
-## Development
+## Local development
 
+From the repository root:
+
+```powershell
 npm install
-
 npm start
+```
 
-## URL
+The development server uses:
 
+```text
 http://localhost:4200
+```
 
-## Backend
+## Backend boundary
 
-Order Service:
-http://localhost:8080
-
-Fake Payment Gateway:
-http://localhost:8081
-
-Important:
-
-The Angular client communicates only with the Order Service.
+Angular must communicate only with the Order Service. It must not call the
+fake payment gateway directly. The API contract and authoritative base URL are
+currently unresolved; see [DECISIONS_AND_GAPS.md](docs/agents/DECISIONS_AND_GAPS.md).

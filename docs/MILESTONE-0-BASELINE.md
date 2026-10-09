@@ -2,6 +2,9 @@
 
 Date: 2026-10-08
 
+Verification environment: Windows development environment in the local
+`ecommerce-client` repository.
+
 ## Scope
 
 This milestone inspected the existing Angular project and recorded its health. It did not implement product, cart, checkout, order, or API features.
@@ -30,6 +33,10 @@ This milestone inspected the existing Angular project and recorded its health. I
 - The runtime API URL is present in `src/assets/config.json`, but its endpoint contract is unverified.
 
 ## Commands and actual results
+
+The current authoritative status summary is
+[PROJECT_STATUS.md](PROJECT_STATUS.md). The results below preserve the
+Milestone 0 evidence.
 
 ### Production build
 
