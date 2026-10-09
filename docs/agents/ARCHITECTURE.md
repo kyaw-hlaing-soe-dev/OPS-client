@@ -21,7 +21,10 @@ the not-found component for unknown URLs.
 ## Services and models
 
 `src/app/core/services/` contains root-provided `ProductService`,
-`CartService`, and `OrderService`. They are currently empty placeholders.
+`ProductService`, `CartService`, and `OrderService` are root-provided services.
+`ProductService` currently provides the typed in-memory catalog used by the
+product list and product detail pages; cart and order services remain
+placeholders.
 
 `src/app/core/models/` contains interfaces for products, cart items, order
 items, and orders. These models are not yet connected to implemented API

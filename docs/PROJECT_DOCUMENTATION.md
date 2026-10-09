@@ -42,7 +42,7 @@ components:
 | Path | Current component | Current behavior |
 |---|---|---|
 | `/` | Product list | Displays a typed in-memory mock product catalog |
-| `/products/:id` | Product detail | Displays placeholder product-detail text |
+| `/products/:id` | Product detail | Displays a product from the typed in-memory mock catalog, or a not-found state |
 | `/cart` | Cart page | Displays a placeholder empty-cart message |
 | `/checkout` | Checkout page | Displays placeholder checkout text |
 | `/orders/:orderId/success` | Order success | Displays static success text |
