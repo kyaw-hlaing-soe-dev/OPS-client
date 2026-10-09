@@ -20,7 +20,9 @@
         <p class="sku">{{ selectedProduct.sku }}</p>
         <h1 id="product-detail-title">{{ selectedProduct.name }}</h1>
         <p class="description">{{ selectedProduct.description }}</p>
-        <p class="price">{{ selectedProduct.price | currency }}</p>
+        <p class="price">
+          {{ selectedProduct.price | currency: 'MMK' : 'code' }}
+        </p>
         <p>
           <strong>Available stock:</strong>
           {{ selectedProduct.stock }}

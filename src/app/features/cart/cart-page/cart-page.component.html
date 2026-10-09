@@ -15,7 +15,7 @@
             <img [src]="item.product.imageUrl" [alt]="item.product.name" />
             <div class="cart-item__details">
               <h2>{{ item.product.name }}</h2>
-              <p>{{ item.product.price | currency }} each</p>
+              <p>{{ item.product.price | currency: 'MMK' : 'code' }} each</p>
               <label [for]="'quantity-' + item.product.id">Quantity</label>
               <input
                 [id]="'quantity-' + item.product.id"
@@ -27,7 +27,9 @@
               />
             </div>
             <div class="cart-item__summary">
-              <strong>{{ item.product.price * item.quantity | currency }}</strong>
+              <strong>
+                {{ item.product.price * item.quantity | currency: 'MMK' : 'code' }}
+              </strong>
               <button type="button" (click)="removeItem(item.product.id)">
                 Remove
               </button>
@@ -40,7 +42,7 @@
         <h2 id="cart-summary-title">Order summary</h2>
         <p>
           <span>Total</span>
-          <strong>{{ cartService.total() | currency }}</strong>
+          <strong>{{ cartService.total() | currency: 'MMK' : 'code' }}</strong>
         </p>
         <a routerLink="/checkout">Continue to checkout</a>
       </aside>

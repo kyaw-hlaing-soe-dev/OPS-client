@@ -75,12 +75,14 @@
         @for (item of cartService.cartItems(); track item.product.id) {
           <p>
             <span>{{ item.product.name }} × {{ item.quantity }}</span>
-            <strong>{{ item.product.price * item.quantity | currency }}</strong>
+            <strong>
+              {{ item.product.price * item.quantity | currency: 'MMK' : 'code' }}
+            </strong>
           </p>
         }
         <p class="order-total">
           <span>Total</span>
-          <strong>{{ cartService.total() | currency }}</strong>
+          <strong>{{ cartService.total() | currency: 'MMK' : 'code' }}</strong>
         </p>
       </aside>
     </div>

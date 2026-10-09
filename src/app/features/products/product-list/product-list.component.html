@@ -21,7 +21,7 @@
             <h2>{{ product.name }}</h2>
             <p>{{ product.description }}</p>
             <div class="product-card__footer">
-              <strong>{{ product.price | currency }}</strong>
+              <strong>{{ product.price | currency: 'MMK' : 'code' }}</strong>
               <a [routerLink]="['/products', product.id]">View details</a>
             </div>
             <button type="button" (click)="addToCart(product)">
