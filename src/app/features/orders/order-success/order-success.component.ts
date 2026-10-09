@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order-success',
   standalone: true,
-  template: `
-    <section class="page-shell">
-      <h1>Order Success</h1>
-      <p>Your order has been placed successfully.</p>
-    </section>
-  `,
+  imports: [RouterLink],
+  templateUrl: './order-success.component.html',
+  styleUrl: './order-success.component.scss',
 })
 export class OrderSuccessComponent {}

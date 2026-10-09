@@ -1,0 +1,52 @@
+<section class="page-shell" aria-labelledby="order-title">
+  @if (isLoading()) {
+    <app-loading />
+  } @else if (errorMessage(); as message) {
+    <p class="message message--error" role="alert">{{ message }}</p>
+    <a routerLink="/">Return to products</a>
+  } @else if (notFound()) {
+    <div class="message" role="status">
+      <h1 id="order-title">Order not found</h1>
+      <p>We could not find the order you requested.</p>
+    </div>
+    <a routerLink="/">Return to products</a>
+  } @else if (order(); as selectedOrder) {
+    <p class="eyebrow">Frontend demo order</p>
+    <h1 id="order-title">Order {{ selectedOrder.id }}</h1>
+    <p>Placed on {{ selectedOrder.createdAt }} · {{ selectedOrder.status }}</p>
+
+    <section class="tracking" aria-labelledby="tracking-title">
+      <h2 id="tracking-title">Order status</h2>
+      <ol>
+        @for (status of statuses; track status) {
+          <li [class.status-complete]="isStatusComplete(status, selectedOrder.status)">
+            <span aria-hidden="true"></span>
+            {{ status }}
+          </li>
+        }
+      </ol>
+    </section>
+
+    <section class="order-items" aria-labelledby="items-title">
+      <h2 id="items-title">Items</h2>
+      @for (item of selectedOrder.items; track item.product.id) {
+        <p>
+          <span>{{ item.product.name }} × {{ item.quantity }}</span>
+          <strong>
+            {{ item.product.price * item.quantity | currency: 'MMK' : 'code' }}
+          </strong>
+        </p>
+      }
+      <p class="order-total">
+        <span>Total</span>
+        <strong>{{ selectedOrder.total | currency: 'MMK' : 'code' }}</strong>
+      </p>
+    </section>
+
+    <section aria-labelledby="delivery-title">
+      <h2 id="delivery-title">Delivery</h2>
+      <p>{{ selectedOrder.deliveryName }}</p>
+      <p>{{ selectedOrder.deliveryAddress }}</p>
+    </section>
+  }
+</section>
