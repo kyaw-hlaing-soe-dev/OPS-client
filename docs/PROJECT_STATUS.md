@@ -16,7 +16,8 @@ rules remain in [AGENT.md](../AGENT.md).
 - M3 product details: complete
 - M4 cart: complete
 - M5 checkout: complete
-- M6 order confirmation and tracking: awaiting approval
+- M6 order confirmation and tracking: complete
+- M7 quality and accessibility: awaiting approval
 - Product, cart, checkout, order, and live API milestones: not started
 
 ## Verified project facts
@@ -32,12 +33,13 @@ rules remain in [AGENT.md](../AGENT.md).
 
 Results recorded on 2026-10-09 in the Windows development environment:
 
-- `npm run build`: passed after M5 changes; output was written to
+- `npm run build`: passed after M6 and MMK currency changes; output was written to
   `dist/ecommerce-client`
 - `npm test`: failed before execution because no Angular test target is
   configured
 - Lint: not run because no lint script or target is configured
-- Application diagnostics: no errors reported for the M5 source files
+- Application diagnostics: no errors reported for the M6 and currency source
+  files
 - Browser smoke test on port 4300: passed for empty-cart protection,
   populated checkout review, required-field validation flow, submitting
   state, and the honest demo acknowledgement
@@ -76,6 +78,10 @@ evidence and command output summary.
   reloads.
 - Checkout currently validates delivery details locally only. It does not
   submit an order or communicate with the fake payment gateway.
+- Order confirmation and tracking currently use a clearly labeled mock order.
+  They are not connected to the Order Service.
+- Product, cart, checkout, and order prices are displayed as `MMK` using the
+  Angular currency pipe. The numeric values remain mock data.
 - Tomcat is the intended server, but no Tomcat configuration or deployment
   script exists in the repository.
 

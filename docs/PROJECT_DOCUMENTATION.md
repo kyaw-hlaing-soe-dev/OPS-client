@@ -12,7 +12,11 @@ flow. Current implementation status and verification results are maintained in
 
 The intended system boundary is:
 
-```text
+```
+
+Displayed prices use the Myanmar kyat currency code (`MMK`). The current
+numeric values are mock catalog values and are not connected to a live
+backend currency contract.text
 Angular frontend -> Order Service -> Fake Payment Gateway
 ```
 
@@ -45,8 +49,8 @@ components:
 | `/products/:id` | Product detail | Displays a product from the typed in-memory mock catalog, or a not-found state |
 | `/cart` | Cart page | Displays in-memory cart items, quantities, totals, and an empty state |
 | `/checkout` | Checkout page | Validates delivery details and reviews the in-memory cart |
-| `/orders/:orderId/success` | Order success | Displays static success text |
-| `/orders/:orderId` | Order detail | Displays placeholder order-detail text |
+| `/orders/:orderId/success` | Order confirmation | Displays a clearly labeled mock confirmation |
+| `/orders/:orderId` | Order detail | Displays mock order items, total, delivery, and status tracking |
 
 Unknown URLs are handled by a lazy-loaded not-found component with a link back
 to the product list.
@@ -59,7 +63,8 @@ The following root-provided services exist:
   a typed in-memory mock catalog for the product-list milestone
 - [CartService](../src/app/core/services/cart.service.ts), which manages the
   in-memory cart state for the cart milestone
-- [OrderService](../src/app/core/services/order.service.ts)
+- [OrderService](../src/app/core/services/order.service.ts), which currently
+  returns one clearly labeled mock order for the confirmation and tracking UI
 
 The functional HTTP interceptor in
 [src/app/core/interceptors/http-interceptor.ts](../src/app/core/interceptors/http-interceptor.ts)
@@ -272,8 +277,8 @@ Also confirm that dependencies have been installed.
 
 ### The browser shows only placeholder pages
 
-The cart, checkout, and order pages are still placeholders. The product-list
-route displays typed mock catalog data; it is not live backend data.
+The product-list, cart, checkout, and order routes currently use frontend
+state or clearly labeled mock data; they are not live backend data.
 
 ### API requests do not work
 
