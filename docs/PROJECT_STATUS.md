@@ -14,7 +14,8 @@ rules remain in [AGENT.md](../AGENT.md).
 - M1 frontend foundation and application shell: complete
 - M2 product listing: complete
 - M3 product details: complete
-- M4 cart: awaiting approval
+- M4 cart: complete
+- M5 checkout: awaiting approval
 - Product, cart, checkout, order, and live API milestones: not started
 
 ## Verified project facts
@@ -30,14 +31,15 @@ rules remain in [AGENT.md](../AGENT.md).
 
 Results recorded on 2026-10-09 in the Windows development environment:
 
-- `npm run build`: passed after M3 changes; output was written to
+- `npm run build`: passed after M4 changes; output was written to
   `dist/ecommerce-client`
 - `npm test`: failed before execution because no Angular test target is
   configured
 - Lint: not run because no lint script or target is configured
-- Application diagnostics: no errors reported for the M3 source files
-- Browser smoke test: passed for an existing product, an unknown product ID,
-  and a non-numeric product ID on the Angular development server
+- Application diagnostics: no errors reported for the M4 source files
+- Browser smoke test: passed for adding a product, increasing its quantity,
+  verifying the calculated total, removing it, and returning to the empty
+  cart state
 
 See [MILESTONE-0-BASELINE.md](MILESTONE-0-BASELINE.md) for the baseline
 evidence and command output summary.
@@ -69,6 +71,8 @@ evidence and command output summary.
   connected to the Order Service.
 - Product details currently use the same typed mock catalog and are not
   connected to the Order Service.
+- Cart state currently lives in memory and is not persisted between full page
+  reloads.
 - Tomcat is the intended server, but no Tomcat configuration or deployment
   script exists in the repository.
 

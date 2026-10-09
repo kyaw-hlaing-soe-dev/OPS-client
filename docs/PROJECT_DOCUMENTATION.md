@@ -43,7 +43,7 @@ components:
 |---|---|---|
 | `/` | Product list | Displays a typed in-memory mock product catalog |
 | `/products/:id` | Product detail | Displays a product from the typed in-memory mock catalog, or a not-found state |
-| `/cart` | Cart page | Displays a placeholder empty-cart message |
+| `/cart` | Cart page | Displays in-memory cart items, quantities, totals, and an empty state |
 | `/checkout` | Checkout page | Displays placeholder checkout text |
 | `/orders/:orderId/success` | Order success | Displays static success text |
 | `/orders/:orderId` | Order detail | Displays placeholder order-detail text |
@@ -57,7 +57,8 @@ The following root-provided services exist:
 
 - [ProductService](../src/app/core/services/product.service.ts), which returns
   a typed in-memory mock catalog for the product-list milestone
-- [CartService](../src/app/core/services/cart.service.ts)
+- [CartService](../src/app/core/services/cart.service.ts), which manages the
+  in-memory cart state for the cart milestone
 - [OrderService](../src/app/core/services/order.service.ts)
 
 The functional HTTP interceptor in
