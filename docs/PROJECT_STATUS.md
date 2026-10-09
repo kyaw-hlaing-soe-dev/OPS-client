@@ -18,7 +18,7 @@ rules remain in [AGENT.md](../AGENT.md).
 - M5 checkout: complete
 - M6 order confirmation and tracking: complete
 - M7 quality and accessibility: complete
-- M8 backend integration: blocked pending verified API contract
+- M8 backend integration: intentionally deferred
 - Product, cart, checkout, order, and live API milestones: not started
 
 ## Verified project facts
@@ -66,8 +66,8 @@ evidence and command output summary.
 
 ## Current blockers and owner decisions
 
-- The Order Service Swagger/OpenAPI contract is unavailable.
-- The authoritative Order Service base URL is unresolved.
+- Backend integration is intentionally deferred. The Order Service
+  Swagger/OpenAPI contract and authoritative base URL remain unavailable.
 - `README.md` and `src/assets/config.json` previously documented different
   backend URLs; the repository does not establish which is authoritative.
 - `src/assets/config.json` is not currently loaded by application code or

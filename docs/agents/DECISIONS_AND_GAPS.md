@@ -5,8 +5,9 @@ confirmation. Unknown behavior must not be treated as implemented behavior.
 
 ## Backend contract
 
-The Order Service Swagger/OpenAPI contract is unavailable. The following are
-not verified:
+Backend integration is intentionally deferred for the current mock-data
+frontend scope. The Order Service Swagger/OpenAPI contract is unavailable.
+The following remain unverified:
 
 - Authoritative base URL
 - Product list and detail endpoints

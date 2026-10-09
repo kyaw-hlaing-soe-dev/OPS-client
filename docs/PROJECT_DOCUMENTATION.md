@@ -10,6 +10,10 @@ The current repository is an early application shell with a mock product-list
 flow. Current implementation status and verification results are maintained in
 [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
+Backend integration is intentionally deferred. The implemented frontend uses
+typed mock data and local in-memory state until the Order Service contract is
+provided.
+
 The intended system boundary is:
 
 ```
