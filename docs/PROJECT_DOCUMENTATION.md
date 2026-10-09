@@ -6,8 +6,9 @@
 (OPS). It is intended to provide a customer-facing storefront with product,
 cart, checkout, and order areas.
 
-The current repository is an early application shell with a mock product-list
-flow. Current implementation status and verification results are maintained in
+The current repository is a polished storefront shell with typed mock product,
+cart, checkout, and order flows. Current implementation status and verification
+results are maintained in
 [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 Backend integration is intentionally deferred. The implemented frontend uses
@@ -16,13 +17,13 @@ provided.
 
 The intended system boundary is:
 
+```text
+Angular frontend -> Order Service -> Fake Payment Gateway
 ```
 
 Displayed prices use the Myanmar kyat currency code (`MMK`). The current
 numeric values are mock catalog values and are not connected to a live
-backend currency contract.text
-Angular frontend -> Order Service -> Fake Payment Gateway
-```
+backend currency contract.
 
 The Angular application must communicate with the Order Service only. It must
 not call the fake payment gateway directly.
@@ -33,13 +34,13 @@ not call the fake payment gateway directly.
 
 The root application renders:
 
-- A shared navigation bar
+- A Quiet Supply branded shared navigation bar
 - The active route inside a router outlet
-- A footer
+- A restrained footer
 
 The root component is defined in
-[src/app/app.ts](../src/app/app.ts), with its template in
-[src/app/app.html](../src/app/app.html).
+[src/app/app.component.ts](../src/app/app.component.ts), with its template in
+[src/app/app.component.html](../src/app/app.component.html).
 
 ### Current routes
 
@@ -95,7 +96,9 @@ ecommerce-client/
     app/
       app.config.ts             Root providers
       app.routes.ts             Application routes
-      app.ts                    Root standalone component
+      app.component.ts          Root standalone component
+      app.component.html        Root application template
+      app.component.scss        Root shell styles
       core/                     Shared models, services, HTTP infrastructure
       features/                 Products, cart, checkout, and orders
       shared/components/        Reusable loading/error UI
@@ -112,8 +115,8 @@ The current interfaces are:
 - `OrderItem`: product, pricing, quantity, and subtotal fields
 - `Order`: order identity, number, status, total, currency, and creation time
 
-These interfaces are currently not connected to API calls or feature
-templates.
+These interfaces currently support the typed mock catalog, in-memory cart,
+checkout summary, and mock order tracking templates.
 
 ## Technology stack
 
@@ -126,7 +129,7 @@ repository:
 - RxJS: 7.8.2 installed
 - SCSS for component and global styles
 - Angular Router
-- Angular Forms dependency is present, but no form is implemented yet
+- Angular Forms dependency is present and used by the checkout form
 - Prettier is present as a development dependency
 
 The project uses standalone bootstrapping through

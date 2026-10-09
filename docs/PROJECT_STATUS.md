@@ -19,6 +19,7 @@ rules remain in [AGENT.md](../AGENT.md).
 - M6 order confirmation and tracking: complete
 - M7 quality and accessibility: complete
 - M8 backend integration: intentionally deferred
+- Visual storefront redesign: complete
 - Product, cart, checkout, order, and live API milestones: not started
 
 ## Verified project facts
@@ -48,6 +49,11 @@ Results recorded on 2026-10-09 in the Windows development environment:
 - Browser smoke test on port 4300: passed for empty-cart protection,
   populated checkout review, required-field validation flow, submitting
   state, and the honest demo acknowledgement
+- Visual redesign verification on port 4303: passed for the homepage,
+  product detail, cart, checkout, order detail, and not-found routes
+- Visual redesign mobile verification at 390px: passed with no horizontal
+  overflow; keyboard focus styles and reduced-motion CSS were confirmed
+- Visual redesign commit: `6ef55be feat: redesign storefront visuals`
 
 See [MILESTONE-0-BASELINE.md](MILESTONE-0-BASELINE.md) for the baseline
 evidence and command output summary.
@@ -63,6 +69,8 @@ evidence and command output summary.
 - M6: order confirmation and tracking
 - M7: tests, accessibility, responsiveness, and error handling
 - M8: backend integration after verifying API contracts
+- Visual redesign: complete; preserve current mock behavior while backend
+  integration remains deferred
 
 ## Current blockers and owner decisions
 
