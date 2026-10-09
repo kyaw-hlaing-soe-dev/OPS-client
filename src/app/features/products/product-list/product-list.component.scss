@@ -1,5 +1,109 @@
+.storefront-page {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.hero {
+  display: grid;
+  min-height: 480px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-primary);
+  color: #f5f7f2;
+  box-shadow: var(--shadow-soft);
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+.hero h1 {
+  max-width: 10ch;
+  margin: 0.6rem 0 1.25rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.hero__copy {
+  max-width: 34rem;
+  color: #cfd9cf;
+  font-size: 1.1rem;
+}
+
+.hero .eyebrow {
+  color: var(--color-accent-soft);
+}
+
+.hero__image-wrap {
+  position: relative;
+  min-height: 320px;
+  background: var(--color-accent-soft);
+}
+
+.hero__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__caption {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  max-width: 12rem;
+  border-radius: var(--radius-sm);
+  background: rgba(32, 37, 31, 0.82);
+  color: #fffdf9;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 48px;
+  margin-top: 2rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: #fffdf9;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button-link:hover {
+  background: #d36f4d;
+  transform: translateY(-1px);
+}
+
 .page-header {
-  margin-bottom: 2rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: -2rem;
+}
+
+.page-header h2 {
+  margin: 0.35rem 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.catalog-note {
+  max-width: 14rem;
+  text-align: right;
+  font-size: 0.85rem !important;
 }
 
 .eyebrow,
@@ -24,8 +128,17 @@
 .product-card {
   overflow: hidden;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: var(--color-surface);
+  box-shadow: 0 8px 24px rgba(38, 51, 42, 0.04);
+  transition:
+    transform var(--motion-standard) ease,
+    box-shadow var(--motion-standard) ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
 }
 
 .product-card img {
@@ -67,6 +180,36 @@
   font-weight: 600;
 }
 
+.add-button {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 1.25rem;
+  background: var(--color-accent);
+}
+
+.add-button:hover {
+  background: #d36f4d;
+}
+
 .empty-state {
   color: var(--color-text-muted);
+}
+
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__image-wrap {
+    min-height: 240px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .catalog-note {
+    text-align: left;
+  }
 }

@@ -1,10 +1,15 @@
 <nav class="navbar" aria-label="Main navigation">
-  <div class="navbar__brand">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Storefront</a>
-  </div>
+  <div class="navbar__inner">
+    <div class="navbar__brand">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="brand-mark" aria-hidden="true">Q</span>
+        <span>Quiet Supply</span>
+      </a>
+    </div>
 
-  <div class="navbar__links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Products</a>
-    <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    <div class="navbar__links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Products</a>
+      <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    </div>
   </div>
 </nav>

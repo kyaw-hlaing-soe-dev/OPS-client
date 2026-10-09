@@ -8,16 +8,18 @@
 .product-detail {
   display: grid;
   gap: 2rem;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: start;
 }
 
 .product-detail img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
 }
 
 .product-detail__content {
+  align-self: center;
   padding: 1rem 0;
 }
 
@@ -35,7 +37,8 @@
 }
 
 .price {
-  font-size: 1.75rem;
+  color: var(--color-accent);
+  font-size: 2rem;
   font-weight: 700;
 }
 

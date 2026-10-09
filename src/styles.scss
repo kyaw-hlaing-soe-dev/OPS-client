@@ -1,13 +1,22 @@
 :root {
-  --color-bg: #f8fafc;
-  --color-surface: #ffffff;
-  --color-surface-alt: #e2e8f0;
-  --color-text: #0f172a;
-  --color-text-muted: #475569;
-  --color-primary: #111827;
-  --color-accent: #fbbf24;
-  --color-border: #e2e8f0;
-  --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.04);
+  --color-bg: #f4f0e9;
+  --color-surface: #fffdf9;
+  --color-surface-alt: #e6eee7;
+  --color-text: #20251f;
+  --color-text-muted: #687067;
+  --color-primary: #273d32;
+  --color-primary-hover: #1d3027;
+  --color-accent: #c45f3d;
+  --color-accent-soft: #f1d5c8;
+  --color-border: #d9d8ce;
+  --shadow-soft: 0 18px 50px rgba(38, 51, 42, 0.09);
+  --shadow-hover: 0 24px 60px rgba(38, 51, 42, 0.16);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --content-width: 1180px;
+  --motion-fast: 180ms;
+  --motion-standard: 280ms;
 }
 
 * {
@@ -15,10 +24,12 @@
 }
 
 html {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
   line-height: 1.5;
   background: var(--color-bg);
   color: var(--color-text);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -30,6 +41,7 @@ body {
 
 a {
   color: inherit;
+  text-underline-offset: 0.2em;
 }
 
 button,
@@ -41,13 +53,54 @@ select {
 
 button,
 a {
+  transition:
+    color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    transform var(--motion-fast) ease;
+
   &:focus-visible {
     outline: 3px solid var(--color-accent);
     outline-offset: 3px;
   }
 }
 
+button {
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-surface);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 img {
   max-width: 100%;
   display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

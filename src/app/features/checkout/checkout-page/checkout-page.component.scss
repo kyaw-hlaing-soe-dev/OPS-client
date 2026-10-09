@@ -12,8 +12,9 @@
 .checkout-form,
 .order-summary {
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
   padding: 1.25rem;
 }
 
@@ -38,7 +39,8 @@ label {
 input {
   width: 100%;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
   padding: 0.65rem;
 }
 
@@ -49,11 +51,19 @@ input:focus {
 
 button {
   margin-top: 1.5rem;
-  border: 0;
-  border-radius: 6px;
-  background: var(--color-primary);
-  color: var(--color-surface);
-  cursor: pointer;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+}
+
+.checkout-form button {
+  background: var(--color-accent);
+}
+
+.checkout-form button:hover:not(:disabled) {
+  background: #d36f4d;
+}
+
+.checkout-form button {
   padding: 0.75rem 1rem;
   font-weight: 700;
 }
@@ -76,6 +86,7 @@ button:disabled {
 .order-summary {
   position: sticky;
   top: 1rem;
+  box-shadow: var(--shadow-soft);
 }
 
 .order-summary h2 {

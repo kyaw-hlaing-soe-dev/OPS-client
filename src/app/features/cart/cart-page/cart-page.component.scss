@@ -21,8 +21,9 @@
 .cart-item,
 .cart-summary {
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: var(--color-surface);
+  box-shadow: 0 8px 24px rgba(38, 51, 42, 0.04);
 }
 
 .cart-item {
@@ -69,6 +70,7 @@
 
 .cart-summary {
   padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
 }
 
 .cart-summary h2 {
@@ -82,9 +84,20 @@
   padding-top: 1rem;
 }
 
-button,
 .cart-summary a {
-  cursor: pointer;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-surface);
+  padding: 0.65rem 0.9rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.cart-summary a:hover {
+  background: #d36f4d;
 }
 
 @media (max-width: 700px) {

@@ -1,8 +1,32 @@
-<section class="page-shell" aria-labelledby="products-title">
-  <header class="page-header">
-    <p class="eyebrow">Mock catalog</p>
-    <h1 id="products-title">Products</h1>
-    <p>Browse our current product selection.</p>
+<section class="storefront-page" aria-labelledby="products-title">
+  @if (products().length > 0) {
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <p class="eyebrow">The everyday edit · mock catalog</p>
+        <h1 id="hero-title">Useful things, thoughtfully chosen.</h1>
+        <p class="hero__copy">
+          A small collection of considered goods for the rhythm of work, travel,
+          and home.
+        </p>
+        <a class="button-link" href="#catalog">Explore the collection</a>
+      </div>
+      <div class="hero__image-wrap">
+        <img
+          [src]="products()[0].imageUrl"
+          [alt]="products()[0].name"
+          decoding="async"
+        />
+        <span class="hero__caption">A quieter way to carry the day.</span>
+      </div>
+    </section>
+  }
+
+  <header class="page-header" id="catalog">
+    <div>
+      <p class="eyebrow">Small-batch selection</p>
+      <h2 id="products-title">Featured goods</h2>
+    </div>
+    <p class="catalog-note">Sample products for frontend demonstration</p>
   </header>
 
   @if (isLoading()) {
@@ -29,7 +53,7 @@
               <strong>{{ product.price | currency: 'MMK' : 'code' }}</strong>
               <a [routerLink]="['/products', product.id]">View details</a>
             </div>
-            <button type="button" (click)="addToCart(product)">
+            <button class="add-button" type="button" (click)="addToCart(product)">
               Add to cart
             </button>
           </div>
