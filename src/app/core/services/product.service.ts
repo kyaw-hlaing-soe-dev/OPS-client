@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, delay, of } from 'rxjs';
+import { Observable, delay, map, of } from 'rxjs';
 
 import { Product } from '../models/product.model';
 
@@ -43,5 +43,11 @@ export class ProductService {
    */
   getProducts(): Observable<readonly Product[]> {
     return of(MOCK_PRODUCTS).pipe(delay(150));
+  }
+
+  getProductById(id: number): Observable<Product | undefined> {
+    return this.getProducts().pipe(
+      map((products) => products.find((product) => product.id === id)),
+    );
   }
 }
