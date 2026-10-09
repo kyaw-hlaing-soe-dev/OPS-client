@@ -39,6 +39,14 @@ select {
   font: inherit;
 }
 
+button,
+a {
+  &:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
 img {
   max-width: 100%;
   display: block;

@@ -19,7 +19,14 @@
           <legend>Delivery details</legend>
 
           <label for="customerName">Full name</label>
-          <input id="customerName" type="text" formControlName="customerName" />
+          <input
+            id="customerName"
+            type="text"
+            autocomplete="name"
+            formControlName="customerName"
+            [attr.aria-invalid]="hasError('customerName')"
+            [attr.aria-describedby]="hasError('customerName') ? 'customerName-error' : null"
+          />
           @if (hasError('customerName')) {
             <p class="field-error" id="customerName-error">
               Enter your full name.
@@ -27,7 +34,14 @@
           }
 
           <label for="email">Email address</label>
-          <input id="email" type="email" formControlName="email" />
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            formControlName="email"
+            [attr.aria-invalid]="hasError('email')"
+            [attr.aria-describedby]="hasError('email') ? 'email-error' : null"
+          />
           @if (hasError('email')) {
             <p class="field-error" id="email-error">
               Enter a valid email address.
@@ -35,7 +49,14 @@
           }
 
           <label for="address">Street address</label>
-          <input id="address" type="text" formControlName="address" />
+          <input
+            id="address"
+            type="text"
+            autocomplete="street-address"
+            formControlName="address"
+            [attr.aria-invalid]="hasError('address')"
+            [attr.aria-describedby]="hasError('address') ? 'address-error' : null"
+          />
           @if (hasError('address')) {
             <p class="field-error" id="address-error">
               Enter a valid street address.
@@ -43,13 +64,27 @@
           }
 
           <label for="city">City</label>
-          <input id="city" type="text" formControlName="city" />
+          <input
+            id="city"
+            type="text"
+            autocomplete="address-level2"
+            formControlName="city"
+            [attr.aria-invalid]="hasError('city')"
+            [attr.aria-describedby]="hasError('city') ? 'city-error' : null"
+          />
           @if (hasError('city')) {
             <p class="field-error" id="city-error">Enter your city.</p>
           }
 
           <label for="postalCode">Postal code</label>
-          <input id="postalCode" type="text" formControlName="postalCode" />
+          <input
+            id="postalCode"
+            type="text"
+            autocomplete="postal-code"
+            formControlName="postalCode"
+            [attr.aria-invalid]="hasError('postalCode')"
+            [attr.aria-describedby]="hasError('postalCode') ? 'postalCode-error' : null"
+          />
           @if (hasError('postalCode')) {
             <p class="field-error" id="postalCode-error">
               Enter a valid postal code.

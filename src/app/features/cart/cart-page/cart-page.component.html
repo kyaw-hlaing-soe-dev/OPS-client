@@ -12,7 +12,12 @@
       <div class="cart-items">
         @for (item of cartService.cartItems(); track item.product.id) {
           <article class="cart-item">
-            <img [src]="item.product.imageUrl" [alt]="item.product.name" />
+            <img
+              [src]="item.product.imageUrl"
+              [alt]="item.product.name"
+              loading="lazy"
+              decoding="async"
+            />
             <div class="cart-item__details">
               <h2>{{ item.product.name }}</h2>
               <p>{{ item.product.price | currency: 'MMK' : 'code' }} each</p>

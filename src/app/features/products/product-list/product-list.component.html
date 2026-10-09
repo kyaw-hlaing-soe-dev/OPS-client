@@ -15,7 +15,12 @@
     <div class="product-grid">
       @for (product of products(); track product.id) {
         <article class="product-card">
-          <img [src]="product.imageUrl" [alt]="product.name" />
+          <img
+            [src]="product.imageUrl"
+            [alt]="product.name"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="product-card__body">
             <p class="product-card__sku">{{ product.sku }}</p>
             <h2>{{ product.name }}</h2>

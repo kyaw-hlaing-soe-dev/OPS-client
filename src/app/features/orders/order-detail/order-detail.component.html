@@ -19,7 +19,10 @@
       <h2 id="tracking-title">Order status</h2>
       <ol>
         @for (status of statuses; track status) {
-          <li [class.status-complete]="isStatusComplete(status, selectedOrder.status)">
+          <li
+            [class.status-complete]="isStatusComplete(status, selectedOrder.status)"
+            [attr.aria-current]="status === selectedOrder.status ? 'step' : null"
+          >
             <span aria-hidden="true"></span>
             {{ status }}
           </li>
