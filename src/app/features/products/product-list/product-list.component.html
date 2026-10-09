@@ -1,0 +1,32 @@
+<section class="page-shell" aria-labelledby="products-title">
+  <header class="page-header">
+    <p class="eyebrow">Mock catalog</p>
+    <h1 id="products-title">Products</h1>
+    <p>Browse our current product selection.</p>
+  </header>
+
+  @if (isLoading()) {
+    <app-loading />
+  } @else if (errorMessage(); as message) {
+    <app-error-message [message]="message" />
+  } @else if (products().length === 0) {
+    <p class="empty-state">No products are available right now.</p>
+  } @else {
+    <div class="product-grid">
+      @for (product of products(); track product.id) {
+        <article class="product-card">
+          <img [src]="product.imageUrl" [alt]="product.name" />
+          <div class="product-card__body">
+            <p class="product-card__sku">{{ product.sku }}</p>
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <div class="product-card__footer">
+              <strong>{{ product.price | currency }}</strong>
+              <a [routerLink]="['/products', product.id]">View details</a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>
