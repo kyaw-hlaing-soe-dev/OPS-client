@@ -44,7 +44,7 @@ components:
 | `/` | Product list | Displays a typed in-memory mock product catalog |
 | `/products/:id` | Product detail | Displays a product from the typed in-memory mock catalog, or a not-found state |
 | `/cart` | Cart page | Displays in-memory cart items, quantities, totals, and an empty state |
-| `/checkout` | Checkout page | Displays placeholder checkout text |
+| `/checkout` | Checkout page | Validates delivery details and reviews the in-memory cart |
 | `/orders/:orderId/success` | Order success | Displays static success text |
 | `/orders/:orderId` | Order detail | Displays placeholder order-detail text |
 
