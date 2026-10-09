@@ -6,8 +6,8 @@
 (OPS). It is intended to provide a customer-facing storefront with product,
 cart, checkout, and order areas.
 
-The current repository is an early application shell. Current implementation
-status and verification results are maintained in
+The current repository is an early application shell with a mock product-list
+flow. Current implementation status and verification results are maintained in
 [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 The intended system boundary is:
@@ -41,7 +41,7 @@ components:
 
 | Path | Current component | Current behavior |
 |---|---|---|
-| `/` | Product list | Displays placeholder product-list text |
+| `/` | Product list | Displays a typed in-memory mock product catalog |
 | `/products/:id` | Product detail | Displays placeholder product-detail text |
 | `/cart` | Cart page | Displays a placeholder empty-cart message |
 | `/checkout` | Checkout page | Displays placeholder checkout text |
@@ -53,9 +53,10 @@ to the product list.
 
 ### Current service behavior
 
-The following root-provided services exist but are currently empty:
+The following root-provided services exist:
 
-- [ProductService](../src/app/core/services/product.service.ts)
+- [ProductService](../src/app/core/services/product.service.ts), which returns
+  a typed in-memory mock catalog for the product-list milestone
 - [CartService](../src/app/core/services/cart.service.ts)
 - [OrderService](../src/app/core/services/order.service.ts)
 
@@ -219,8 +220,11 @@ The production configuration enables output hashing and defines budgets for:
 - Initial bundle: warning at 500 kB, error at 1 MB
 - Individual component styles: warning at 4 kB, error at 8 kB
 
-Deployment details are recorded in
-[DECISIONS_AND_GAPS.md](agents/DECISIONS_AND_GAPS.md).
+The intended server is Tomcat, based on project-owner direction. The
+repository does not contain a Tomcat deployment descriptor, context
+configuration, CI workflow, or deployment script. Hosting the contents of
+`dist/ecommerce-client` on Tomcat will require a decision about the SPA base
+path and fallback routing.
 
 ## Testing and current coverage
 
@@ -267,8 +271,8 @@ Also confirm that dependencies have been installed.
 
 ### The browser shows only placeholder pages
 
-This is the current expected behavior. The feature components and services have
-not yet been implemented.
+The cart, checkout, and order pages are still placeholders. The product-list
+route displays typed mock catalog data; it is not live backend data.
 
 ### API requests do not work
 

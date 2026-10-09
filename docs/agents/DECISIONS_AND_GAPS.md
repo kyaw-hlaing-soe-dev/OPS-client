@@ -33,10 +33,17 @@ maintained in [PROJECT_STATUS.md](../PROJECT_STATUS.md).
 
 ## Feature behavior
 
-Product, cart, checkout, and order screens are currently placeholders. Their
-final UI behavior, validation rules, persistence expectations, and API-backed
-flows require implementation decisions after the relevant milestone is
-approved.
+Cart, checkout, and order screens are currently placeholders. Product listing
+uses clearly labeled typed in-memory mock data. Final UI behavior, validation
+rules, persistence expectations, and API-backed flows require implementation
+decisions after the relevant milestone is approved.
+
+## Tomcat deployment
+
+Tomcat is the intended server according to project-owner direction. The
+repository does not yet define a Tomcat context path, SPA fallback
+configuration, deployment script, or CI process. These details require
+confirmation before documenting a repeatable deployment procedure.
 
 ## Current architectural decisions
 
