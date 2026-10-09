@@ -12,98 +12,8 @@ import { LoadingComponent } from '../../../shared/components/loading/loading.com
   selector: 'app-product-detail',
   standalone: true,
   imports: [CurrencyPipe, LoadingComponent, RouterLink],
-  template: `
-    <section class="page-shell" aria-labelledby="product-detail-title">
-      @if (isLoading()) {
-        <app-loading />
-      } @else if (errorMessage()) {
-        <div class="message message--error" role="alert">
-          {{ errorMessage() }}
-        </div>
-        <a routerLink="/">Return to products</a>
-      } @else if (notFound()) {
-        <div class="message" role="status">
-          <h1 id="product-detail-title">Product not found</h1>
-          <p>We could not find the product you requested.</p>
-        </div>
-        <a routerLink="/">Return to products</a>
-      } @else if (product(); as selectedProduct) {
-        <a class="back-link" routerLink="/">Back to products</a>
-        <article class="product-detail">
-          <img
-            [src]="selectedProduct.imageUrl"
-            [alt]="selectedProduct.name"
-          />
-          <div class="product-detail__content">
-            <p class="sku">{{ selectedProduct.sku }}</p>
-            <h1 id="product-detail-title">{{ selectedProduct.name }}</h1>
-            <p class="description">{{ selectedProduct.description }}</p>
-            <p class="price">{{ selectedProduct.price | currency }}</p>
-            <p>
-              <strong>Available stock:</strong>
-              {{ selectedProduct.stock }}
-            </p>
-          </div>
-        </article>
-      }
-    </section>
-  `,
-  styles: `
-    .back-link {
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      color: var(--color-primary);
-      font-weight: 600;
-    }
-
-    .product-detail {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      align-items: start;
-    }
-
-    .product-detail img {
-      width: 100%;
-      border-radius: 12px;
-    }
-
-    .product-detail__content {
-      padding: 1rem 0;
-    }
-
-    .sku {
-      color: var(--color-text-muted);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .description {
-      color: var(--color-text-muted);
-      font-size: 1.1rem;
-    }
-
-    .price {
-      font-size: 1.75rem;
-      font-weight: 700;
-    }
-
-    .message {
-      margin-bottom: 1rem;
-    }
-
-    .message--error {
-      color: #b91c1c;
-    }
-
-    @media (max-width: 700px) {
-      .product-detail {
-        grid-template-columns: 1fr;
-      }
-    }
-  `,
+  templateUrl: './product-detail.component.html',
+  styleUrl: './product-detail.component.scss',
 })
 export class ProductDetailComponent {
   private readonly route = inject(ActivatedRoute);
@@ -118,20 +28,9 @@ export class ProductDetailComponent {
   constructor() {
     this.route.paramMap
       .pipe(
-        map((params) => Number(params.get('id'))),
+        map((params) => this.parseProductId(params.get('id'))),
         distinctUntilChanged(),
-        switchMap((id) => {
-          this.product.set(null);
-          this.notFound.set(!Number.isInteger(id) || id < 1);
-          this.errorMessage.set(null);
-          this.isLoading.set(true);
-
-          if (!Number.isInteger(id) || id < 1) {
-            return of(undefined);
-          }
-
-          return this.productService.getProductById(id);
-        }),
+        switchMap((id) => this.loadProduct(id)),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
@@ -146,5 +45,25 @@ export class ProductDetailComponent {
           this.notFound.set(false);
         },
       });
+  }
+
+  private parseProductId(value: string | null): number | null {
+    const id = Number(value);
+    return Number.isInteger(id) && id > 0 ? id : null;
+  }
+
+  private loadProduct(id: number | null) {
+    this.resetState(id === null);
+
+    return id === null
+      ? of(undefined)
+      : this.productService.getProductById(id);
+  }
+
+  private resetState(isInvalidId: boolean): void {
+    this.product.set(null);
+    this.notFound.set(isInvalidId);
+    this.errorMessage.set(null);
+    this.isLoading.set(true);
   }
 }

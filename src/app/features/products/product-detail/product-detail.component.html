@@ -1,0 +1,31 @@
+<section class="page-shell" aria-labelledby="product-detail-title">
+  @if (isLoading()) {
+    <app-loading />
+  } @else if (errorMessage(); as message) {
+    <div class="message message--error" role="alert">
+      {{ message }}
+    </div>
+    <a routerLink="/">Return to products</a>
+  } @else if (notFound()) {
+    <div class="message" role="status">
+      <h1 id="product-detail-title">Product not found</h1>
+      <p>We could not find the product you requested.</p>
+    </div>
+    <a routerLink="/">Return to products</a>
+  } @else if (product(); as selectedProduct) {
+    <a class="back-link" routerLink="/">Back to products</a>
+    <article class="product-detail">
+      <img [src]="selectedProduct.imageUrl" [alt]="selectedProduct.name" />
+      <div class="product-detail__content">
+        <p class="sku">{{ selectedProduct.sku }}</p>
+        <h1 id="product-detail-title">{{ selectedProduct.name }}</h1>
+        <p class="description">{{ selectedProduct.description }}</p>
+        <p class="price">{{ selectedProduct.price | currency }}</p>
+        <p>
+          <strong>Available stock:</strong>
+          {{ selectedProduct.stock }}
+        </p>
+      </div>
+    </article>
+  }
+</section>
