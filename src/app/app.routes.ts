@@ -43,4 +43,11 @@ export const routes: Routes = [
         (m) => m.OrderDetailComponent,
       ),
   },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./shared/components/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent,
+      ),
+  },
 ];
