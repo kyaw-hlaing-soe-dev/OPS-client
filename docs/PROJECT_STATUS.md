@@ -17,7 +17,8 @@ rules remain in [AGENT.md](../AGENT.md).
 - M4 cart: complete
 - M5 checkout: complete
 - M6 order confirmation and tracking: complete
-- M7 quality and accessibility: awaiting approval
+- M7 quality and accessibility: complete
+- M8 backend integration: blocked pending verified API contract
 - Product, cart, checkout, order, and live API milestones: not started
 
 ## Verified project facts
@@ -33,13 +34,17 @@ rules remain in [AGENT.md](../AGENT.md).
 
 Results recorded on 2026-10-09 in the Windows development environment:
 
-- `npm run build`: passed after M6 and MMK currency changes; output was written to
+- `npm run build`: passed after M7 quality changes; output was written to
   `dist/ecommerce-client`
 - `npm test`: failed before execution because no Angular test target is
   configured
 - Lint: not run because no lint script or target is configured
-- Application diagnostics: no errors reported for the M6 and currency source
+- Application diagnostics: no errors reported for the M7 source and template
   files
+- `git diff --check`: passed for the M7 changes
+- Accessibility quality pass: added visible keyboard focus styles, form
+  autocomplete, invalid-field associations, current-step semantics, and
+  lazy image loading
 - Browser smoke test on port 4300: passed for empty-cart protection,
   populated checkout review, required-field validation flow, submitting
   state, and the honest demo acknowledgement
@@ -84,5 +89,7 @@ evidence and command output summary.
   Angular currency pipe. The numeric values remain mock data.
 - Tomcat is the intended server, but no Tomcat configuration or deployment
   script exists in the repository.
+- M7 browser smoke testing was not rerun after the final accessibility-only
+  changes; production build and diagnostics passed.
 
 See [DECISIONS_AND_GAPS.md](agents/DECISIONS_AND_GAPS.md) for details.
