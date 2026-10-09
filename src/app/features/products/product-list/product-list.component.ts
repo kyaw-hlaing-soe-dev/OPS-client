@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
 import { Product } from '../../../core/models/product.model';
+import { CartService } from '../../../core/services/cart.service';
 import { ProductService } from '../../../core/services/product.service';
 import { ErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
@@ -17,6 +18,7 @@ import { LoadingComponent } from '../../../shared/components/loading/loading.com
 })
 export class ProductListComponent {
   private readonly productService = inject(ProductService);
+  private readonly cartService = inject(CartService);
   private readonly destroyRef = inject(DestroyRef);
 
   readonly products = signal<readonly Product[]>([]);
@@ -41,5 +43,9 @@ export class ProductListComponent {
           this.isLoading.set(false);
         },
       });
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addItem(product);
   }
 }

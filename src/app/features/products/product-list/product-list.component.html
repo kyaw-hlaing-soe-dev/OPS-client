@@ -24,6 +24,9 @@
               <strong>{{ product.price | currency }}</strong>
               <a [routerLink]="['/products', product.id]">View details</a>
             </div>
+            <button type="button" (click)="addToCart(product)">
+              Add to cart
+            </button>
           </div>
         </article>
       }

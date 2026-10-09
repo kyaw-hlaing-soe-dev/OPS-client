@@ -1,0 +1,49 @@
+<section class="page-shell" aria-labelledby="cart-title">
+  <header class="page-header">
+    <h1 id="cart-title">Shopping Cart</h1>
+    <p>{{ cartService.itemCount() }} item(s) in your cart.</p>
+  </header>
+
+  @if (cartService.cartItems().length === 0) {
+    <p class="empty-state">Your cart is currently empty.</p>
+    <a routerLink="/">Browse products</a>
+  } @else {
+    <div class="cart-content">
+      <div class="cart-items">
+        @for (item of cartService.cartItems(); track item.product.id) {
+          <article class="cart-item">
+            <img [src]="item.product.imageUrl" [alt]="item.product.name" />
+            <div class="cart-item__details">
+              <h2>{{ item.product.name }}</h2>
+              <p>{{ item.product.price | currency }} each</p>
+              <label [for]="'quantity-' + item.product.id">Quantity</label>
+              <input
+                [id]="'quantity-' + item.product.id"
+                type="number"
+                min="1"
+                [max]="item.product.stock"
+                [value]="item.quantity"
+                (change)="updateQuantity(item.product.id, $event)"
+              />
+            </div>
+            <div class="cart-item__summary">
+              <strong>{{ item.product.price * item.quantity | currency }}</strong>
+              <button type="button" (click)="removeItem(item.product.id)">
+                Remove
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+
+      <aside class="cart-summary" aria-labelledby="cart-summary-title">
+        <h2 id="cart-summary-title">Order summary</h2>
+        <p>
+          <span>Total</span>
+          <strong>{{ cartService.total() | currency }}</strong>
+        </p>
+        <a routerLink="/checkout">Continue to checkout</a>
+      </aside>
+    </div>
+  }
+</section>
