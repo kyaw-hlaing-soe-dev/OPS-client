@@ -5,7 +5,59 @@
     <router-outlet></router-outlet>
   </main>
 
-  <footer class="app-footer">
-    <p>&copy; 2026 Storefront</p>
+  <!-- Premium Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a routerLink="/" class="footer__logo">
+            <span class="footer__logo-mark" aria-hidden="true">Q</span>
+            <span>Quiet Supply</span>
+          </a>
+          <p class="footer__tagline">
+            Thoughtfully chosen goods for the rhythm of work, travel, and home.
+          </p>
+        </div>
+
+        <!-- Shop Column -->
+        <div class="footer__col">
+          <h3>Shop</h3>
+          <ul>
+            <li><a routerLink="/">All Products</a></li>
+            <li><a routerLink="/" fragment="collections">Collections</a></li>
+            <li><a routerLink="/" fragment="new-arrivals">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <!-- Help Column -->
+        <div class="footer__col">
+          <h3>Help</h3>
+          <ul>
+            <li><a routerLink="/">Shipping & Returns</a></li>
+            <li><a routerLink="/">Contact Us</a></li>
+            <li><a routerLink="/">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="footer__col footer__newsletter">
+          <h3>Stay in touch</h3>
+          <p>Get updates on new arrivals and exclusive offers.</p>
+          <form class="newsletter-form" (submit)="$event.preventDefault()">
+            <input type="email" placeholder="Your email address" aria-label="Email for newsletter" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2026 Quiet Supply. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a routerLink="/">Privacy</a>
+          <a routerLink="/">Terms</a>
+        </div>
+      </div>
+    </div>
   </footer>
 </div>
