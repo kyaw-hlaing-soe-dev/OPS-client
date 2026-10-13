@@ -21,17 +21,18 @@ export class CartService {
     ),
   );
 
-  addItem(product: Product): void {
+  addItem(product: Product, quantity: number = 1): void {
+    const normalizedQuantity = Number.isFinite(quantity) && quantity > 0 ? quantity : 1;
     const existingItem = this.items().find(
       (item) => item.product.id === product.id,
     );
 
     if (existingItem) {
-      this.updateQuantity(product.id, existingItem.quantity + 1);
+      this.updateQuantity(product.id, existingItem.quantity + normalizedQuantity);
       return;
     }
 
-    this.items.update((items) => [...items, { product, quantity: 1 }]);
+    this.items.update((items) => [...items, { product, quantity: normalizedQuantity }]);
   }
 
   removeItem(productId: number): void {
