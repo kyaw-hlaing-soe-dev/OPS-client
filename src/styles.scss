@@ -43,6 +43,95 @@
   animation-range: entry 0% cover 35%;
 }
 
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-42px) translateY(12px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(42px) translateY(12px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: reveal-up var(--motion-slow) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+.reveal-left {
+  transform: translateX(-42px);
+  animation-name: reveal-left;
+}
+
+.reveal-right {
+  transform: translateX(42px);
+  animation-name: reveal-right;
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateX(-24px) translateY(14px) scale(0.985);
+  animation: reveal-left var(--motion-slow) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index, 0) * 60ms);
+  animation-timeline: view();
+  animation-range: entry 0% cover 35%;
+}
+
+.reveal-item--right {
+  transform: translateX(24px) translateY(14px) scale(0.985);
+  animation-name: reveal-right;
+}
+
+@supports not (animation-timeline: view()) {
+  .reveal,
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    animation: reveal-up var(--motion-slow) ease-out both;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @supports not (animation-timeline: view()) {
   .fade-in-up {
     opacity: 1;
@@ -182,5 +271,13 @@ p {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal-item,
+  .reveal-item--right {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
