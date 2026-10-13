@@ -22,7 +22,10 @@ export class CartService {
   );
 
   addItem(product: Product, quantity: number = 1): void {
-    const normalizedQuantity = Number.isFinite(quantity) && quantity > 0 ? quantity : 1;
+    const normalizedQuantity = Math.min(
+      Number.isFinite(quantity) && quantity > 0 ? quantity : 1,
+      product.stock,
+    );
     const existingItem = this.items().find(
       (item) => item.product.id === product.id,
     );
