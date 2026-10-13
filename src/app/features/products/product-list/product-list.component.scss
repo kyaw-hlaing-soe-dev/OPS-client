@@ -1,6 +1,7 @@
 .storefront-page {
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
+  overflow-x: clip;
 }
 
 .hero {
