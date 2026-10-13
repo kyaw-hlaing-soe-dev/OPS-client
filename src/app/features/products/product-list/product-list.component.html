@@ -1,6 +1,6 @@
 <section class="storefront-page" aria-labelledby="products-title">
   @if (products().length > 0) {
-    <section class="hero reveal" aria-labelledby="hero-title">
+    <section class="hero reveal reveal-left" aria-labelledby="hero-title">
       <div class="hero__content">
         <p class="eyebrow">The everyday edit</p>
         <h1 id="hero-title">Useful things, thoughtfully chosen.</h1>
@@ -32,7 +32,7 @@
     </section>
   }
 
-  <section class="feature-strip reveal" aria-label="Store values">
+  <section class="feature-strip reveal reveal-right" aria-label="Store values">
     <div>
       <span>01</span>
       <p>Small-batch essentials</p>
@@ -47,7 +47,7 @@
     </div>
   </section>
 
-  <section class="collection-grid reveal" id="collections" aria-labelledby="collection-title">
+  <section class="collection-grid reveal reveal-left" id="collections" aria-labelledby="collection-title">
     <div class="section-heading">
       <p class="eyebrow">Curated collections</p>
       <h2 id="collection-title">Shop by mood and routine</h2>
@@ -72,7 +72,7 @@
     </div>
   </section>
 
-  <header class="page-header reveal" id="catalog">
+  <header class="page-header reveal reveal-right" id="catalog">
     <div>
       <p class="eyebrow">Small-batch selection</p>
       <h2 id="products-title">Featured goods</h2>
@@ -87,9 +87,9 @@
   } @else if (products().length === 0) {
     <p class="empty-state">No products are available right now.</p>
   } @else {
-    <div class="product-grid reveal">
+    <div class="product-grid reveal reveal-left">
       @for (product of products(); track product.id) {
-        <article class="product-card reveal-item">
+        <article class="product-card reveal-item" [class.reveal-item--right]="product.id % 2 === 0">
           <div class="product-card__media">
             <img
               [src]="product.imageUrl"
@@ -117,7 +117,7 @@
     </div>
   }
 
-  <section class="editorial-banner reveal" id="new-arrivals" aria-labelledby="new-arrivals-title">
+  <section class="editorial-banner reveal reveal-right" id="new-arrivals" aria-labelledby="new-arrivals-title">
     <div>
       <p class="eyebrow">New arrivals</p>
       <h2 id="new-arrivals-title">Fresh finds for calmer routines.</h2>

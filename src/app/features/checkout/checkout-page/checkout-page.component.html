@@ -10,7 +10,7 @@
   } @else {
     <div class="checkout-layout">
       <form
-        class="checkout-form fade-in-up"
+        class="checkout-form checkout-panel--left fade-in-up"
         [formGroup]="checkoutForm"
         (ngSubmit)="submitCheckout()"
         novalidate
@@ -105,7 +105,7 @@
         }
       </form>
 
-      <aside class="order-summary fade-in-up" aria-labelledby="order-summary-title">
+      <aside class="order-summary checkout-panel--right fade-in-up" aria-labelledby="order-summary-title">
         <h2 id="order-summary-title">Order summary</h2>
         @for (item of cartService.cartItems(); track item.product.id) {
           <p>
