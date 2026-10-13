@@ -86,10 +86,10 @@ milestone, verified versions and checks, roadmap, and blockers.
 
 ## Senior frontend audit status
 
-Audit phase: Phase 1 inspection complete on 2026-10-12. Application code was
-not changed. The required `AGENTIC_FRONTEND_BUILD_PROMPT.md` file was not
-present anywhere under the workspace, so the audit followed this file and the
-repository documentation instead.
+Audit phase: Phase 1 inspection and approved frontend improvements completed
+on 2026-10-12. The required `AGENTIC_FRONTEND_BUILD_PROMPT.md` file was not
+present anywhere under the workspace, so the audit and fixes followed this
+file and the repository documentation instead.
 
 Verified findings:
 
@@ -97,16 +97,11 @@ Verified findings:
   style budget warnings for
   `src/app/features/products/product-list/product-list.component.scss` and
   `src/app/shared/components/navbar/navbar.component.scss`.
-- `npm test` fails before test execution because no Angular test project or
-  target is configured. No checked-in `*.spec.ts` files were found.
+- `npm test` now passes through the Angular Vitest target with five focused
+  tests covering cart behavior and MMK formatting.
 - The deployed site at `https://ops-client-orcin.vercel.app/` loads the
-  storefront and product-not-found route. Browser inspection at 390px and
-  740px confirmed horizontal document overflow.
-- The overflow is consistent with the directional reveal transforms in
-  `src/app/features/products/product-list/product-list.component.scss`
-  (`translateX(-42px)` and `translateX(42px)`) applied to page-edge sections.
-  The deployed document measured 402px at a 390px viewport and 751px at a
-  740px viewport.
+  storefront and product-not-found route. The local fixed build was verified
+  at 390px and 740px with no horizontal document overflow.
 - Product and order data are still typed in-memory mocks. Checkout only waits
   300ms and displays a frontend-demo message; it does not create an order.
 - `provideHttpClient()` is configured, but the pass-through interceptor is not
@@ -121,14 +116,24 @@ Verified findings:
 
 Prioritized audit roadmap:
 
-1. Fix responsive overflow without removing the intended directional motion;
-   verify at 390px, 740px, and desktop widths.
-2. Add a supported Angular test target and focused tests for cart quantities,
-   totals, product not-found behavior, and checkout validation.
-3. Resolve and document the authoritative Order Service contract and base URL
-   before replacing mock services with HTTP requests.
-4. Reduce or justify component-style budget warnings and review external asset
-   loading strategy.
+Completed improvements:
 
-Application-code fixes are blocked until the project owner approves a specific
-improvement milestone.
+- Contained directional reveal transforms while preserving left/right motion.
+- Added the Angular Vitest test target and focused cart/MMK tests.
+- Added Escape-key and dialog semantics for search/mobile navigation overlays.
+- Relabeled non-functional storefront links as demo links or connected them to
+  the real catalog anchor.
+- Moved shared reveal and visually-hidden styles to the global stylesheet,
+  reducing component stylesheet duplication.
+
+Remaining roadmap:
+
+1. Resolve and document the authoritative Order Service contract and base URL
+   before replacing mock services with HTTP requests.
+2. Add API-backed checkout and order ownership only after the verified contract
+   is available.
+3. Continue reducing or explicitly justify the remaining component-style
+   budget warnings and review external asset hosting.
+
+The API configuration milestone remains blocked because the repository still
+has conflicting candidate URLs and no authoritative Swagger/OpenAPI contract.

@@ -18,7 +18,7 @@ rules remain in [AGENT.md](../AGENT.md).
 - M5 checkout: complete
 - M6 order confirmation and tracking: complete
 - M7 quality and accessibility: complete
-- M8 backend integration: intentionally deferred
+- M8 backend integration: intentionally deferred pending a verified contract
 - Visual storefront redesign: complete
 - Product, cart, checkout, order, and live API milestones: not started
 
@@ -54,6 +54,10 @@ Results recorded on 2026-10-09 in the Windows development environment:
 - Visual redesign mobile verification at 390px: passed with no horizontal
   overflow; keyboard focus styles and reduced-motion CSS were confirmed
 - Visual redesign commit: `6ef55be feat: redesign storefront visuals`
+- Senior audit improvements: responsive overflow fixed, Vitest test target
+  configured, navigation overlay semantics improved, and shared motion styles
+  consolidated. `npm test` passed with 5 tests and `npm run build` passed with
+  remaining component-style budget warnings.
 
 See [MILESTONE-0-BASELINE.md](MILESTONE-0-BASELINE.md) for the baseline
 evidence and command output summary.
@@ -97,6 +101,10 @@ evidence and command output summary.
   Angular currency pipe. The numeric values remain mock data.
 - Tomcat is the intended server, but no Tomcat configuration or deployment
   script exists in the repository.
+- The approved audit fixes did not change backend integration because the
+  authoritative Order Service Swagger/OpenAPI contract and base URL are still
+  unavailable. The conflicting `src/assets/config.json` and environment URLs
+  remain documented blockers rather than being guessed or silently selected.
 - M7 browser smoke testing was not rerun after the final accessibility-only
   changes; production build and diagnostics passed.
 
