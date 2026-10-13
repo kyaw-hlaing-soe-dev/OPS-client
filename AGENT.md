@@ -83,3 +83,52 @@ status belong in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
 
 See [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the current
 milestone, verified versions and checks, roadmap, and blockers.
+
+## Senior frontend audit status
+
+Audit phase: Phase 1 inspection complete on 2026-10-12. Application code was
+not changed. The required `AGENTIC_FRONTEND_BUILD_PROMPT.md` file was not
+present anywhere under the workspace, so the audit followed this file and the
+repository documentation instead.
+
+Verified findings:
+
+- `npm run build` passes and emits the production bundle, but reports component
+  style budget warnings for
+  `src/app/features/products/product-list/product-list.component.scss` and
+  `src/app/shared/components/navbar/navbar.component.scss`.
+- `npm test` fails before test execution because no Angular test project or
+  target is configured. No checked-in `*.spec.ts` files were found.
+- The deployed site at `https://ops-client-orcin.vercel.app/` loads the
+  storefront and product-not-found route. Browser inspection at 390px and
+  740px confirmed horizontal document overflow.
+- The overflow is consistent with the directional reveal transforms in
+  `src/app/features/products/product-list/product-list.component.scss`
+  (`translateX(-42px)` and `translateX(42px)`) applied to page-edge sections.
+  The deployed document measured 402px at a 390px viewport and 751px at a
+  740px viewport.
+- Product and order data are still typed in-memory mocks. Checkout only waits
+  300ms and displays a frontend-demo message; it does not create an order.
+- `provideHttpClient()` is configured, but the pass-through interceptor is not
+  registered and no service currently performs an HTTP request.
+- Backend configuration is inconsistent: `src/assets/config.json` contains
+  `http://localhost:8086/QMS/`, while environment files contain
+  `http://localhost:8080/api/v1`. Neither value is currently used by the
+  product, checkout, or order services.
+- The deployed browser inspection showed external Unsplash images and Google
+  Fonts loading successfully during the audit. Their third-party availability
+  remains a deployment/performance dependency.
+
+Prioritized audit roadmap:
+
+1. Fix responsive overflow without removing the intended directional motion;
+   verify at 390px, 740px, and desktop widths.
+2. Add a supported Angular test target and focused tests for cart quantities,
+   totals, product not-found behavior, and checkout validation.
+3. Resolve and document the authoritative Order Service contract and base URL
+   before replacing mock services with HTTP requests.
+4. Reduce or justify component-style budget warnings and review external asset
+   loading strategy.
+
+Application-code fixes are blocked until the project owner approves a specific
+improvement milestone.
