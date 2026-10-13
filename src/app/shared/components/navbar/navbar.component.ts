@@ -23,6 +23,18 @@ export class NavbarComponent {
     this.scrolled.set(window.scrollY > 20);
   }
 
+  @HostListener('window:keydown.escape')
+  onEscape(): void {
+    if (this.searchOpen()) {
+      this.toggleSearch();
+      return;
+    }
+
+    if (this.mobileMenuOpen()) {
+      this.closeMobileMenu();
+    }
+  }
+
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update((v) => !v);
     if (this.mobileMenuOpen()) {
