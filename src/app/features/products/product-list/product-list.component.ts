@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
@@ -8,11 +7,12 @@ import { CartService } from '../../../core/services/cart.service';
 import { ProductService } from '../../../core/services/product.service';
 import { ErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
+import { MmkPipe } from '../../../shared/pipes/mmk.pipe';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CurrencyPipe, ErrorMessageComponent, LoadingComponent, RouterLink],
+  imports: [ErrorMessageComponent, LoadingComponent, MmkPipe, RouterLink],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })

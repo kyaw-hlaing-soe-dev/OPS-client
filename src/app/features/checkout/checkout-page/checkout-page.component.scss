@@ -12,41 +12,46 @@
 .checkout-form,
 .order-summary {
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
-  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-card);
+  padding: 1.4rem;
+  transform: translateY(0);
+  transition: transform var(--motion-standard) ease, box-shadow var(--motion-standard) ease, border-color var(--motion-standard) ease;
+}
+
+.checkout-form:hover,
+.order-summary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(191, 91, 59, 0.2);
 }
 
 fieldset {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.7rem;
   border: 0;
+  margin: 0;
   padding: 0;
 }
 
 legend {
   margin-bottom: 1rem;
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 label {
-  margin-top: 0.5rem;
-  font-weight: 600;
+  margin-top: 0.4rem;
+  font-weight: 700;
 }
 
 input {
   width: 100%;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-bg);
-  padding: 0.65rem;
-}
-
-input:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  border-radius: 12px;
+  background: rgba(244, 239, 231, 0.9);
+  padding: 0.75rem 0.8rem;
 }
 
 button {
@@ -56,16 +61,17 @@ button {
 }
 
 .checkout-form button {
+  width: 100%;
+  border-radius: 12px;
   background: var(--color-accent);
+  box-shadow: 0 10px 25px rgba(191, 91, 59, 0.18);
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, background-color var(--motion-fast) ease;
 }
 
 .checkout-form button:hover:not(:disabled) {
-  background: #d36f4d;
-}
-
-.checkout-form button {
-  padding: 0.75rem 1rem;
-  font-weight: 700;
+  background: #ae5338;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(191, 91, 59, 0.22);
 }
 
 button:disabled {
@@ -76,17 +82,17 @@ button:disabled {
 .field-error {
   margin: 0;
   color: #b91c1c;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .submission-message {
+  margin-top: 1rem;
   color: var(--color-text-muted);
 }
 
 .order-summary {
   position: sticky;
   top: 1rem;
-  box-shadow: var(--shadow-soft);
 }
 
 .order-summary h2 {
@@ -98,14 +104,14 @@ button:disabled {
   justify-content: space-between;
   gap: 1rem;
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.8rem;
 }
 
 .order-summary .order-total {
   border-bottom: 0;
   border-top: 2px solid var(--color-border);
   padding-top: 1rem;
-  font-size: 1.1rem;
+  font-size: 1.08rem;
 }
 
 .empty-state {

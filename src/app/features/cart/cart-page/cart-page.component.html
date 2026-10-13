@@ -1,12 +1,17 @@
 <section class="page-shell" aria-labelledby="cart-title">
   <header class="page-header">
-    <h1 id="cart-title">Shopping Cart</h1>
-    <p>{{ cartService.itemCount() }} item(s) in your cart.</p>
+    <div>
+      <p class="eyebrow">Your basket</p>
+      <h1 id="cart-title">Shopping cart</h1>
+    </div>
+    <p class="page-copy">{{ cartService.itemCount() }} item(s) selected.</p>
   </header>
 
   @if (cartService.cartItems().length === 0) {
-    <p class="empty-state">Your cart is currently empty.</p>
-    <a routerLink="/">Browse products</a>
+    <div class="empty-panel">
+      <p class="empty-state">Your cart is currently empty.</p>
+      <a routerLink="/">Browse products</a>
+    </div>
   } @else {
     <div class="cart-content">
       <div class="cart-items">
@@ -20,7 +25,7 @@
             />
             <div class="cart-item__details">
               <h2>{{ item.product.name }}</h2>
-              <p>{{ item.product.price | currency: 'MMK' : 'code' }} each</p>
+              <p>{{ item.product.price | mmk }} each</p>
               <label [for]="'quantity-' + item.product.id">Quantity</label>
               <input
                 [id]="'quantity-' + item.product.id"
@@ -33,7 +38,7 @@
             </div>
             <div class="cart-item__summary">
               <strong>
-                {{ item.product.price * item.quantity | currency: 'MMK' : 'code' }}
+                {{ item.product.price * item.quantity | mmk }}
               </strong>
               <button type="button" (click)="removeItem(item.product.id)">
                 Remove
@@ -45,9 +50,19 @@
 
       <aside class="cart-summary" aria-labelledby="cart-summary-title">
         <h2 id="cart-summary-title">Order summary</h2>
-        <p>
+        <div class="summary-list">
+          <div>
+            <span>Subtotal</span>
+            <strong>{{ cartService.total() | mmk }}</strong>
+          </div>
+          <div>
+            <span>Shipping</span>
+            <strong>Free</strong>
+          </div>
+        </div>
+        <p class="summary-total">
           <span>Total</span>
-          <strong>{{ cartService.total() | currency: 'MMK' : 'code' }}</strong>
+          <strong>{{ cartService.total() | mmk }}</strong>
         </p>
         <a routerLink="/checkout">Continue to checkout</a>
       </aside>

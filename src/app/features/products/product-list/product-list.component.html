@@ -1,32 +1,83 @@
 <section class="storefront-page" aria-labelledby="products-title">
   @if (products().length > 0) {
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero reveal" aria-labelledby="hero-title">
       <div class="hero__content">
-        <p class="eyebrow">The everyday edit · mock catalog</p>
+        <p class="eyebrow">The everyday edit</p>
         <h1 id="hero-title">Useful things, thoughtfully chosen.</h1>
         <p class="hero__copy">
-          A small collection of considered goods for the rhythm of work, travel,
-          and home.
+          Thoughtful essentials for the rhythm of work, travel, and home — built to make everyday rituals feel easier.
         </p>
-        <a class="button-link" href="#catalog">Explore the collection</a>
+        <div class="hero__actions">
+          <a class="button-link" href="#catalog">Explore the collection</a>
+          <a class="button-link button-link--secondary" routerLink="/cart">View cart</a>
+        </div>
+        <ul class="hero__highlights" aria-label="Store highlights">
+          <li>Free shipping over MMK 75,000</li>
+          <li>Curated for small-space routines</li>
+          <li>30-day easy returns</li>
+        </ul>
       </div>
+
       <div class="hero__image-wrap">
         <img
           [src]="products()[0].imageUrl"
           [alt]="products()[0].name"
           decoding="async"
         />
-        <span class="hero__caption">A quieter way to carry the day.</span>
+        <div class="hero__caption">
+          <span>Featured pick</span>
+          <strong>{{ products()[0].name }}</strong>
+        </div>
       </div>
     </section>
   }
 
-  <header class="page-header" id="catalog">
+  <section class="feature-strip reveal" aria-label="Store values">
+    <div>
+      <span>01</span>
+      <p>Small-batch essentials</p>
+    </div>
+    <div>
+      <span>02</span>
+      <p>Built to last</p>
+    </div>
+    <div>
+      <span>03</span>
+      <p>Made for everyday rituals</p>
+    </div>
+  </section>
+
+  <section class="collection-grid reveal" id="collections" aria-labelledby="collection-title">
+    <div class="section-heading">
+      <p class="eyebrow">Curated collections</p>
+      <h2 id="collection-title">Shop by mood and routine</h2>
+    </div>
+
+    <div class="collection-cards">
+      <article class="collection-card collection-card--dark">
+        <p>Workday reset</p>
+        <h3>Desk essentials</h3>
+        <a routerLink="/">Browse</a>
+      </article>
+      <article class="collection-card collection-card--light">
+        <p>On the move</p>
+        <h3>Travel companions</h3>
+        <a routerLink="/">Browse</a>
+      </article>
+      <article class="collection-card collection-card--warm">
+        <p>Slow living</p>
+        <h3>Home rituals</h3>
+        <a routerLink="/">Browse</a>
+      </article>
+    </div>
+  </section>
+
+  <header class="page-header reveal" id="catalog">
     <div>
       <p class="eyebrow">Small-batch selection</p>
       <h2 id="products-title">Featured goods</h2>
     </div>
-    <p class="catalog-note">Sample products for frontend demonstration</p>
+    <p class="catalog-note">Thoughtful pieces for your daily rhythm.</p>
   </header>
 
   @if (isLoading()) {
@@ -36,21 +87,25 @@
   } @else if (products().length === 0) {
     <p class="empty-state">No products are available right now.</p>
   } @else {
-    <div class="product-grid">
+    <div class="product-grid reveal">
       @for (product of products(); track product.id) {
-        <article class="product-card">
-          <img
-            [src]="product.imageUrl"
-            [alt]="product.name"
-            loading="lazy"
-            decoding="async"
-          />
+        <article class="product-card reveal-item">
+          <div class="product-card__media">
+            <img
+              [src]="product.imageUrl"
+              [alt]="product.name"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="product-card__badge">New</span>
+          </div>
+
           <div class="product-card__body">
             <p class="product-card__sku">{{ product.sku }}</p>
             <h2>{{ product.name }}</h2>
             <p>{{ product.description }}</p>
             <div class="product-card__footer">
-              <strong>{{ product.price | currency: 'MMK' : 'code' }}</strong>
+              <strong>{{ product.price | mmk }}</strong>
               <a [routerLink]="['/products', product.id]">View details</a>
             </div>
             <button class="add-button" type="button" (click)="addToCart(product)">
@@ -61,4 +116,12 @@
       }
     </div>
   }
+
+  <section class="editorial-banner reveal" id="new-arrivals" aria-labelledby="new-arrivals-title">
+    <div>
+      <p class="eyebrow">New arrivals</p>
+      <h2 id="new-arrivals-title">Fresh finds for calmer routines.</h2>
+    </div>
+    <a routerLink="/">See all arrivals</a>
+  </section>
 </section>

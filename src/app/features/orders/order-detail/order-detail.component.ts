@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -7,6 +6,7 @@ import { distinctUntilChanged, map, of, switchMap } from 'rxjs';
 import { Order, OrderStatus } from '../../../core/models/order.model';
 import { OrderService } from '../../../core/services/order.service';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
+import { MmkPipe } from '../../../shared/pipes/mmk.pipe';
 
 const ORDER_STATUSES: readonly OrderStatus[] = [
   'Confirmed',
@@ -18,7 +18,7 @@ const ORDER_STATUSES: readonly OrderStatus[] = [
 @Component({
   selector: 'app-order-detail',
   standalone: true,
-  imports: [CurrencyPipe, LoadingComponent, RouterLink],
+  imports: [LoadingComponent, MmkPipe, RouterLink],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.scss',
 })

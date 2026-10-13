@@ -1,13 +1,13 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { CartService } from '../../../core/services/cart.service';
+import { MmkPipe } from '../../../shared/pipes/mmk.pipe';
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CurrencyPipe, RouterLink],
+  imports: [MmkPipe, RouterLink],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })

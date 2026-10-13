@@ -10,7 +10,7 @@
   } @else {
     <div class="checkout-layout">
       <form
-        class="checkout-form"
+        class="checkout-form fade-in-up"
         [formGroup]="checkoutForm"
         (ngSubmit)="submitCheckout()"
         novalidate
@@ -105,19 +105,19 @@
         }
       </form>
 
-      <aside class="order-summary" aria-labelledby="order-summary-title">
+      <aside class="order-summary fade-in-up" aria-labelledby="order-summary-title">
         <h2 id="order-summary-title">Order summary</h2>
         @for (item of cartService.cartItems(); track item.product.id) {
           <p>
             <span>{{ item.product.name }} × {{ item.quantity }}</span>
             <strong>
-              {{ item.product.price * item.quantity | currency: 'MMK' : 'code' }}
+              {{ item.product.price * item.quantity | mmk }}
             </strong>
           </p>
         }
         <p class="order-total">
           <span>Total</span>
-          <strong>{{ cartService.total() | currency: 'MMK' : 'code' }}</strong>
+          <strong>{{ cartService.total() | mmk }}</strong>
         </p>
       </aside>
     </div>

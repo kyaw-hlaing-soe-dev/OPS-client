@@ -36,13 +36,13 @@
         <p>
           <span>{{ item.product.name }} × {{ item.quantity }}</span>
           <strong>
-            {{ item.product.price * item.quantity | currency: 'MMK' : 'code' }}
+            {{ item.product.price * item.quantity | mmk }}
           </strong>
         </p>
       }
       <p class="order-total">
         <span>Total</span>
-        <strong>{{ selectedOrder.total | currency: 'MMK' : 'code' }}</strong>
+        <strong>{{ selectedOrder.total | mmk }}</strong>
       </p>
     </section>
 

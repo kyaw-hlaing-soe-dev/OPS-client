@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -10,11 +9,12 @@ import { RouterLink } from '@angular/router';
 import { delay, of } from 'rxjs';
 
 import { CartService } from '../../../core/services/cart.service';
+import { MmkPipe } from '../../../shared/pipes/mmk.pipe';
 
 @Component({
   selector: 'app-checkout-page',
   standalone: true,
-  imports: [CurrencyPipe, ReactiveFormsModule, RouterLink],
+  imports: [MmkPipe, ReactiveFormsModule, RouterLink],
   templateUrl: './checkout-page.component.html',
   styleUrl: './checkout-page.component.scss',
 })

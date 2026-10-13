@@ -1,29 +1,32 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map, of, switchMap } from 'rxjs';
 
 import { Product } from '../../../core/models/product.model';
+import { CartService } from '../../../core/services/cart.service';
 import { ProductService } from '../../../core/services/product.service';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
+import { MmkPipe } from '../../../shared/pipes/mmk.pipe';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe, LoadingComponent, RouterLink],
+  imports: [LoadingComponent, MmkPipe, RouterLink],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
 })
 export class ProductDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly productService = inject(ProductService);
+  private readonly cartService = inject(CartService);
   private readonly destroyRef = inject(DestroyRef);
 
   readonly product = signal<Product | null>(null);
   readonly isLoading = signal(true);
   readonly notFound = signal(false);
   readonly errorMessage = signal<string | null>(null);
+  readonly quantity = signal(1);
 
   constructor() {
     this.route.paramMap
@@ -65,5 +68,24 @@ export class ProductDetailComponent {
     this.notFound.set(isInvalidId);
     this.errorMessage.set(null);
     this.isLoading.set(true);
+  }
+
+  increaseQuantity(): void {
+    const current = this.quantity();
+    const product = this.product();
+    if (!product) {
+      return;
+    }
+
+    this.quantity.set(Math.min(current + 1, product.stock));
+  }
+
+  decreaseQuantity(): void {
+    this.quantity.set(Math.max(this.quantity() - 1, 1));
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addItem(product, this.quantity());
+    this.quantity.set(1);
   }
 }
