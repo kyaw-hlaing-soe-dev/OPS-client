@@ -1,27 +1,21 @@
-<!-- Announcement Bar -->
 <div class="announcement-bar">
   <p>Free shipping on orders over MMK 75,000 · <a routerLink="/">Shop now</a></p>
 </div>
 
-<!-- Main Navigation -->
 <nav class="navbar" [class.navbar--scrolled]="scrolled()" aria-label="Main navigation">
   <div class="navbar__inner">
-    <!-- Brand -->
     <a class="navbar__brand" routerLink="/" (click)="closeMobileMenu()">
       <span class="brand-mark" aria-hidden="true">Q</span>
       <span class="brand-name">Quiet Supply</span>
     </a>
 
-    <!-- Desktop Navigation -->
     <div class="navbar__center">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Shop</a>
       <a routerLink="/" fragment="collections">Collections</a>
-      <a routerLink="/" fragment="new-arrivals">New Arrivals</a>
+      <a routerLink="/" fragment="new-arrivals">New arrivals</a>
     </div>
 
-    <!-- Actions -->
     <div class="navbar__actions">
-      <!-- Search Toggle -->
       <button class="action-btn" (click)="toggleSearch()" aria-label="Search products">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/>
@@ -29,7 +23,6 @@
         </svg>
       </button>
 
-      <!-- Cart -->
       <a class="action-btn cart-btn" routerLink="/cart" aria-label="Shopping cart">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
@@ -43,7 +36,6 @@
         }
       </a>
 
-      <!-- Mobile Menu Toggle -->
       <button
         class="hamburger"
         [class.hamburger--open]="mobileMenuOpen()"
@@ -58,7 +50,6 @@
     </div>
   </div>
 
-  <!-- Search Overlay -->
   @if (searchOpen()) {
     <div class="search-overlay" (click)="toggleSearch()">
       <div class="search-container" (click)="$event.stopPropagation()">
@@ -70,6 +61,7 @@
           <input
             type="search"
             placeholder="Search products..."
+            [(ngModel)]="searchQuery"
             autofocus
             aria-label="Search products"
           />
@@ -85,12 +77,11 @@
     </div>
   }
 
-  <!-- Mobile Menu Overlay -->
   @if (mobileMenuOpen()) {
     <div class="mobile-overlay" (click)="closeMobileMenu()"></div>
     <div class="mobile-menu" role="dialog" aria-label="Mobile navigation">
       <div class="mobile-menu__links">
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">Shop All</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">Shop all</a>
         <a routerLink="/cart" routerLinkActive="active" (click)="closeMobileMenu()">
           Cart
           @if (cartService.itemCount() > 0) {

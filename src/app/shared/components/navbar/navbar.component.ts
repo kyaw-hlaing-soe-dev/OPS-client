@@ -1,11 +1,13 @@
-import { Component, inject, signal, HostListener } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
 import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -14,7 +16,7 @@ export class NavbarComponent {
   readonly mobileMenuOpen = signal(false);
   readonly scrolled = signal(false);
   readonly searchOpen = signal(false);
-  readonly searchQuery = signal('');
+  searchQuery = '';
 
   @HostListener('window:scroll')
   onScroll(): void {
@@ -38,7 +40,7 @@ export class NavbarComponent {
   toggleSearch(): void {
     this.searchOpen.update((v) => !v);
     if (!this.searchOpen()) {
-      this.searchQuery.set('');
+      this.searchQuery = '';
     }
   }
 }
